@@ -1,0 +1,85 @@
+INFO:     127.0.0.1:52580 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "POST /api/extract-from-edgar HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+Building Excel report from: C:\Users\Rohan\Desktop\Options Extractor\jobs\aad68a2b\extraction.json
+  Plans found: 4
+  ✓ Sheet 1: Executive Summary
+  ✓ Sheet 2: Plan Roll-Forward
+  ✓ Sheet 3: Tranche Details
+  ✓ Sheet 4: Valuation Inputs
+  ✓ Sheet 5: Plan Descriptions
+  ✓ Sheet 6: KPIs & Ratios
+  ✓ Sheet 7: Data Quality
+
+💾 Saved: C:\Users\Rohan\Desktop\Options Extractor\jobs\aad68a2b\NOC_10-K_options.xlsx
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/job/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/result/aad68a2b HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /api/download/aad68a2b/excel HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /assets/index-DG4G_8U1.js HTTP/1.1" 304 Not Modified
+INFO:     2409:40c0:1021:c383:51ad:17eb:c9e7:5561:0 - "GET /assets/index-SpYoYQxO.css HTTP/1.1" 304 Not Modified

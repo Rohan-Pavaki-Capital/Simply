@@ -1,0 +1,178 @@
+INFO:     127.0.0.1:51122 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /docs HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /assets/index-Ckiwu7sJ.css HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /assets/index-DTeDXw7E.js HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     44.204.225.27:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     3.239.33.136:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     100.53.51.21:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     54.146.239.171:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     54.242.22.210:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     103.119.173.158:0 - "GET / HTTP/1.1" 200 OK
+INFO:     54.163.40.215:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     49.36.104.247:0 - "GET / HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /assets/index-DTeDXw7E.js HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /assets/index-Ckiwu7sJ.css HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     103.119.173.158:0 - "GET /simply HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     103.119.173.158:0 - "GET /api/simply?ticker=NKE HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "POST /api/extract HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+[fa175b8d] US filing detected — extraction cache bypassed
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+Building Excel report from: C:\Users\Rohan\Desktop\Options Extractor\jobs\fa175b8d\extraction.json
+  Plans found: 3
+  ✓ Sheet 1: Executive Summary
+  ✓ Sheet 2: Plan Roll-Forward
+  ✓ Sheet 3: Tranche Details
+  ✓ Sheet 4: Valuation Inputs
+  ✓ Sheet 5: Plan Descriptions
+  ✓ Sheet 6: KPIs & Ratios
+  ✓ Sheet 7: Data Quality
+
+💾 Saved: C:\Users\Rohan\Desktop\Options Extractor\jobs\fa175b8d\Form 10 K Dec 2025_options.xlsx
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/result/fa175b8d HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/download/fa175b8d/excel HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "POST /api/extract HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+[07e856da] US filing detected — extraction cache bypassed
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+Building Excel report from: C:\Users\Rohan\Desktop\Options Extractor\jobs\07e856da\extraction.json
+  Plans found: 3
+  ✓ Sheet 1: Executive Summary
+  ✓ Sheet 2: Plan Roll-Forward
+  ✓ Sheet 3: Tranche Details
+  ✓ Sheet 4: Valuation Inputs
+  ✓ Sheet 5: Plan Descriptions
+  ✓ Sheet 6: KPIs & Ratios
+  ✓ Sheet 7: Data Quality
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+
+💾 Saved: C:\Users\Rohan\Desktop\Options Extractor\jobs\07e856da\Nike-Inc-2025_10K_options.xlsx
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/job/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/result/07e856da HTTP/1.1" 200 OK
+INFO:     49.36.104.247:0 - "GET /api/download/07e856da/excel HTTP/1.1" 200 OK

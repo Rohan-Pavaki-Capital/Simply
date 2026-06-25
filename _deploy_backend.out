@@ -1,0 +1,66 @@
+INFO:     127.0.0.1:51395 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51397 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /assets/index-DG4G_8U1.js HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /assets/index-SpYoYQxO.css HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "POST /api/extract-from-edgar HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+Building Excel report from: C:\Users\Rohan\Desktop\Options Extractor\jobs\443206e2\extraction.json
+  Plans found: 4
+  ✓ Sheet 1: Executive Summary
+  ✓ Sheet 2: Plan Roll-Forward
+  ✓ Sheet 3: Tranche Details
+  ✓ Sheet 4: Valuation Inputs
+  ✓ Sheet 5: Plan Descriptions
+  ✓ Sheet 6: KPIs & Ratios
+  ✓ Sheet 7: Data Quality
+
+💾 Saved: C:\Users\Rohan\Desktop\Options Extractor\jobs\443206e2\NOC_10-K_options.xlsx
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/job/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/result/443206e2 HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:b097:4643:a8d5:f255:0 - "GET /api/download/443206e2/excel HTTP/1.1" 200 OK
+INFO:     98.94.13.178:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     54.167.12.144:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     18.212.188.130:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     54.89.152.112:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     44.201.171.235:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     44.200.165.126:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     2409:40c0:1036:65c:513:6066:8352:8294:0 - "GET / HTTP/1.1" 200 OK
+INFO:     2409:40c0:1036:65c:513:6066:8352:8294:0 - "GET /assets/index-DG4G_8U1.js HTTP/1.1" 200 OK
+INFO:     2409:40c0:1036:65c:513:6066:8352:8294:0 - "GET /assets/index-SpYoYQxO.css HTTP/1.1" 200 OK
+INFO:     2409:40c0:1021:c383:748f:5922:7917:5e9f:0 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     2409:40c0:1021:c383:748f:5922:7917:5e9f:0 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:64082 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET / HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /assets/index-DG4G_8U1.js HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /assets/index-SpYoYQxO.css HTTP/1.1" 200 OK
+INFO:     103.119.173.158:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     18.210.11.47:0 - "GET / HTTP/1.1" 206 Partial Content
+INFO:     54.147.111.132:0 - "GET /favicon.svg HTTP/1.1" 404 Not Found
+INFO:     34.206.71.129:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
