@@ -6,3 +6,4 @@ uvicorn[standard]>=0.27.0
 curl_cffi>=0.7        # impersonates Chrome to get past Cloudflare
 openpyxl>=3.1.2       # Excel export for /api/simply/excel
 yfinance>=0.2.40      # beta lookup for /api/beta
+requests>=2.31.0      # GuruFocus (/api/industry) + Firecrawl (/api/credit-rating) HTTP calls

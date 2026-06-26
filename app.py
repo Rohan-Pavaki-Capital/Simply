@@ -17,6 +17,7 @@ Endpoints:
     GET  /api/simply/excel  -> same forecast as a downloadable .xlsx
     GET  /api/beta          -> ticker -> company beta from yfinance (JSON)
     GET  /api/credit-rating -> company name -> credit rating mapped to scale (JSON)
+    GET  /api/industry      -> ticker -> GuruFocus industry mapped to Damodaran (JSON)
     GET  /api/health        -> health check (for Render/Railway)
 """
 from __future__ import annotations
@@ -56,6 +57,7 @@ from fastapi.responses import RedirectResponse
 
 from simply_route import router as simply_router
 from beta.beta_route import router as beta_router
+from Company_Industry import router as industry_router
 
 
 def _load_router_from_path(module_name: str, file_path: str):
@@ -89,6 +91,7 @@ app.add_middleware(
 app.include_router(simply_router)
 app.include_router(beta_router)
 app.include_router(credit_router)
+app.include_router(industry_router)
 
 
 @app.get("/")
