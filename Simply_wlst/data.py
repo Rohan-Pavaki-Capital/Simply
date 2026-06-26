@@ -20,9 +20,9 @@ These two SWS chart blocks are the source:
 Note: numbers are S&P data redistributed by SWS — for personal model use, not redistribution.
 """
 
-import argparse, csv, json, re, sys, time, random
+import argparse, csv, json, os, re, sys, time, random
 from datetime import datetime, timezone
-from urllib.parse import unquote
+from urllib.parse import unquote, quote_plus
 
 try:
     from curl_cffi import requests as http      # gets past Cloudflare
@@ -30,6 +30,35 @@ try:
 except ImportError:
     import requests as http
     IMP = None
+
+# When deployed on a datacenter host (Render/Railway), Cloudflare blocks the
+# server's IP and simplywall.st returns a challenge page with no data blob.
+# If FIRECRAWL_API_KEY is set, route HTML fetches through Firecrawl (which uses
+# residential-type IPs + a stealth proxy) instead of fetching directly. Unset
+# (e.g. running locally on a residential IP) -> direct fetch, no credits used.
+FIRECRAWL_API_KEY = os.environ.get("FIRECRAWL_API_KEY", "").strip()
+
+
+def _firecrawl_html(url, stealth=False):
+    """Fetch a URL's rendered HTML via Firecrawl's /scrape endpoint."""
+    body = {"url": url, "formats": ["rawHtml"]}
+    if stealth:
+        body["proxy"] = "stealth"          # residential IPs to clear Cloudflare
+    r = http.post(
+        "https://api.firecrawl.dev/v1/scrape",
+        headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}",
+                 "Content-Type": "application/json"},
+        json=body, timeout=120,
+    )
+    try:
+        d = r.json()
+    except Exception:
+        raise SystemExit(f"Firecrawl returned non-JSON (HTTP {r.status_code}).")
+    if not d.get("success"):
+        # 402 = out of credits; surface a clear message rather than a blank page.
+        raise SystemExit(f"Firecrawl error (HTTP {r.status_code}): "
+                         f"{d.get('error') or d.get('details') or 'unknown'}")
+    return d.get("data", {}).get("rawHtml", "") or ""
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
@@ -67,6 +96,27 @@ def _query(s, engine, url, q):
     return s.get(url, params={"q": q}, timeout=20).text          # Bing = GET
 
 
+def _firecrawl_search(q):
+    """Resolve the SWS URL via Firecrawl's /search endpoint (datacenter IPs
+    can't reach DuckDuckGo/Bing directly). Returns the result URLs joined as
+    text so the existing _parse() regex can pick out the simplywall.st link."""
+    r = http.post(
+        "https://api.firecrawl.dev/v1/search",
+        headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}",
+                 "Content-Type": "application/json"},
+        json={"query": q, "limit": 10}, timeout=120,
+    )
+    try:
+        d = r.json()
+    except Exception:
+        raise SystemExit(f"Firecrawl search returned non-JSON (HTTP {r.status_code}).")
+    if not d.get("success"):
+        raise SystemExit(f"Firecrawl search error (HTTP {r.status_code}): "
+                         f"{d.get('error') or 'unknown'}")
+    results = d.get("data") or []
+    return "\n".join(it.get("url", "") for it in results if isinstance(it, dict))
+
+
 def _parse(html, ticker):
     for m in SWS_PAT.finditer(unquote(html)):
         u = re.sub(r"/(future|valuation|past|health|dividend|management|ownership|information|news.*)$", "", m.group(0).rstrip("/"))
@@ -87,6 +137,12 @@ def find_url(s, ticker, exchange, debug=False):
     if key in cache:
         return cache[key]
     q = f"{ticker} {exchange or ''} Future Growth simply wall street".strip()
+    if FIRECRAWL_API_KEY:
+        url = _parse(_firecrawl_search(q), ticker)
+        if url:
+            cache[key] = url; json.dump(cache, open(CACHE_FILE, "w"))
+            return url
+        raise SystemExit(f"No SWS page found for {ticker}. Try --exchange.")
     for engine, eurl in ENGINES:
         for attempt in range(3):
             try:
@@ -107,7 +163,11 @@ def find_url(s, ticker, exchange, debug=False):
 
 
 def get_state(s, url):
-    html = s.get(url, timeout=30).text
+    # simplywall.st is Cloudflare-walled to datacenter IPs -> use stealth.
+    if FIRECRAWL_API_KEY:
+        html = _firecrawl_html(url, stealth=True)
+    else:
+        html = s.get(url, timeout=30).text
     return parse_state(html)
 
 

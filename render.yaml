@@ -12,6 +12,11 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
+      # REQUIRED on Render: Cloudflare blocks the datacenter IP, so HTML fetches
+      # are routed through Firecrawl. Paste your key in the Render dashboard.
+      # (Leave it unset when running locally on a residential IP -> direct fetch.)
+      - key: FIRECRAWL_API_KEY
+        sync: false
       # Lock CORS to your own frontend domain in production, e.g.
       #   ^https://your-frontend\.onrender\.com$
       - key: CORS_ORIGIN_REGEX
