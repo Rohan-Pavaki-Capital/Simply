@@ -1,20 +1,21 @@
 """
-simply_app.py — standalone deployment entry point for the Simply Wall St
-forecast feature.
+app.py — standalone deployment entry point for the Simply Wall St forecast
+feature and the yfinance beta lookup.
 
-This mounts ONLY the Simply Wall St forecast router (simply_route.py), which
+This mounts the Simply Wall St forecast router (simply_route.py) — which
 scrapes forward analyst consensus from Simply Wall St with no browser, no OCR,
-and no API keys. The options-extraction pipeline and all country scrapers have
-been removed from this deployment.
+and no API keys — plus the beta router (beta/beta_route.py), which returns a
+company's beta from yfinance. Both run on the same uvicorn server.
 
 Run locally:
-    uvicorn simply_app:app --host 0.0.0.0 --port 8000
+    uvicorn app:app --host 0.0.0.0 --port 8000
 
 Endpoints:
     GET  /                  -> redirects to the ticker form
     GET  /simply            -> self-contained ticker form (HTML)
     GET  /api/simply        -> ticker [+ exchange] -> forecast rows (JSON)
     GET  /api/simply/excel  -> same forecast as a downloadable .xlsx
+    GET  /api/beta          -> ticker -> company beta from yfinance (JSON)
     GET  /api/health        -> health check (for Render/Railway)
 """
 from __future__ import annotations
@@ -26,6 +27,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 
 from simply_route import router as simply_router
+from beta.beta_route import router as beta_router
 
 app = FastAPI(title="Simply Wall St Forecast")
 
@@ -39,6 +41,7 @@ app.add_middleware(
 )
 
 app.include_router(simply_router)
+app.include_router(beta_router)
 
 
 @app.get("/")

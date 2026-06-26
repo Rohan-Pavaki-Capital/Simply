@@ -7,7 +7,7 @@ services:
     region: oregon
     rootDir: .
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: uvicorn simply_app:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
