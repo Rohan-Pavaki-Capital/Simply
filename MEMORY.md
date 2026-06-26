@@ -4,6 +4,14 @@ Running log of significant decisions and session summaries for this project.
 
 ## Decisions
 
+### 2026-06-26 — Gut repo to Simply-Wall-St-only for easy Railway/Render deploy
+- **Decided (user choice):** Strip this repo down to ONLY the Simply Wall St forecast scraper so it deploys trivially on a free tier; configs for BOTH Railway and Render. Method: gut on `main` directly (rejected: separate folder / new branch — user wanted the tree itself slimmed). NOT committed — all removed country/pipeline code is recoverable via `git restore .` from the `initial commit`.
+- **Why Simply-only is easy:** `Simply_wlst/data.py` + `simply_route.py` need ONLY `curl_cffi` (Cloudflare bypass) + `fastapi`/`uvicorn` + `openpyxl`. No Playwright/Chromium, no Tesseract OCR, no Anthropic/Together keys, no Postgres — so none of the multi-country deploy pain (Docker, system libs, RAM) applies.
+- **Kept:** `Simply_wlst/data.py`, `simply_route.py`, `sws_url_cache.json`, `CLAUDE.md`, `MEMORY.md`, `.env`, `.claude`, git. **Removed:** `backend.py`, all `*_fetch.py`/`*_resolve.py`, `options.py`/`prompt.py`/`keywords.py`/`ocr_pdf.py`/`cache.py`, `Anthropic/`, `database/`, `format/`, `Frontend/`, `doc/`, `_asia_e2e/`, `downloads/`, `output/`, all run_*.py / proto / tunnel logs / batch scripts / docs.
+- **Added:** `simply_app.py` (new entry point — FastAPI app mounting only `simply_route.router` + `/` redirect + `/api/health`), slim `requirements.txt` (4 pkgs), rewrote `render.yaml` (single free python web service, `uvicorn simply_app:app`), `Procfile` + `railway.json` (Nixpacks) for Railway, `runtime.txt` (python-3.11.9).
+- **Verified:** deps import; TestClient boots app — `/api/health` ok, `/simply` form 200 (5229 bytes), routes `/api/simply`, `/api/simply/grouped`, `/api/simply/excel` all present. Did NOT run a live scrape.
+- **Residual risk (unchanged, host-independent):** the scraper hits DuckDuckGo/Bing + simplywall.st from a DATACENTER IP; Cloudflare/search engines block cloud IPs more than residential, so a live scrape may 403 even though `curl_cffi` impersonates Chrome. Only a post-deploy live test confirms it works.
+
 ### 2026-05-30 — Add Japan (EDINET) as 4th market
 - **Decided:** Add Japan via the FSA's EDINET system as a new fetch source, following the existing resolve→fetch→PDF→pipeline pattern. Two new modules (`jp_resolve.py`, `japan_fetch.py`) + `backend.py` endpoint `/api/extract-from-japan`.
 - **Discovery approach:** Use the `edinet-python` library (rejected: raw `requests` + bounded date-scan — user preferred the library to write less code).
