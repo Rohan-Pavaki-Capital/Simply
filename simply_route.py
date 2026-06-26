@@ -63,12 +63,36 @@ def _fill_to_max(rows):
         rows.append(_project_next(rows[-2], rows[-1]))
     return rows
 
+# Input tickers may carry an exchange prefix (MIC code), e.g. "XPAR:CAP".
+# Map the MIC to the slug Simply Wall St uses in its URLs so the right company
+# is resolved. Verified live against SWS. Unknown prefixes fall through to the
+# raw prefix (works if the user already typed an SWS-style code like "nasdaq").
+_EXCHANGE_MAP = {
+    "XNAS": "nasdaq", "XNGS": "nasdaq", "XNMS": "nasdaq",
+    "XNYS": "nyse", "ARCX": "nyse", "BATS": "nyse",
+    "XLON": "lse", "XPAR": "epa", "XETR": "etr", "XFRA": "etr",
+    "XAMS": "ams", "XBRU": "ebr", "XMIL": "bit", "XMAD": "bme",
+    "XSWX": "vtx", "XVTX": "vtx", "XSTO": "sto", "XCSE": "cph",
+    "XHEL": "hel", "XLIS": "eli", "XOSL": "ob", "XASX": "asx",
+    "XTSE": "tsx", "XTSX": "tsxv", "XHKG": "hkg", "XTKS": "tse",
+    "XKRX": "kose", "XKOS": "kosdaq",
+}
+
 router = APIRouter()
 
 
 def _scrape(ticker: str, exchange: str | None):
     """Run the SWS scraper for one ticker. Returns (page_url, rows)."""
     ticker = (ticker or "").strip()
+    exchange = (exchange or "").strip() or None
+    # Pre-filter exchange-prefixed input like "XPAR:CAP": use the symbol "CAP",
+    # and translate the prefix into an SWS exchange hint to disambiguate.
+    if ":" in ticker:
+        prefix, _, sym = ticker.partition(":")
+        ticker = sym.strip()
+        prefix = prefix.strip().upper()
+        if not exchange and prefix:           # don't override an explicit hint
+            exchange = _EXCHANGE_MAP.get(prefix, prefix.lower())
     if not ticker:
         raise HTTPException(status_code=400, detail="A ticker symbol is required.")
     s = _sws.session()

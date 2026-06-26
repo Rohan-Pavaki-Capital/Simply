@@ -117,12 +117,23 @@ def _firecrawl_search(q):
     return "\n".join(it.get("url", "") for it in results if isinstance(it, dict))
 
 
-def _parse(html, ticker):
+def _parse(html, ticker, exchange=None):
+    matches = []
     for m in SWS_PAT.finditer(unquote(html)):
         u = re.sub(r"/(future|valuation|past|health|dividend|management|ownership|information|news.*)$", "", m.group(0).rstrip("/"))
         if f"-{ticker.lower()}" in u.split("/")[-2]:
-            return u + "/future"          # Future Growth tab carries the forecast blocks
-    return None
+            matches.append(u + "/future")     # Future Growth tab carries the forecast blocks
+    if not matches:
+        return None
+    # When an exchange is known, prefer the result whose SWS slug is on that
+    # exchange (e.g. "epa-cap" for XPAR:CAP) so an ambiguous ticker like CAP
+    # doesn't fall back to a same-symbol company on another exchange.
+    if exchange:
+        ex = exchange.lower()
+        for u in matches:
+            if u.split("/")[-2].startswith(ex + "-"):
+                return u
+    return matches[0]
 
 
 def _blocked(html):
@@ -138,7 +149,7 @@ def find_url(s, ticker, exchange, debug=False):
         return cache[key]
     q = f"{ticker} {exchange or ''} Future Growth simply wall street".strip()
     if FIRECRAWL_API_KEY:
-        url = _parse(_firecrawl_search(q), ticker)
+        url = _parse(_firecrawl_search(q), ticker, exchange)
         if url:
             cache[key] = url; json.dump(cache, open(CACHE_FILE, "w"))
             return url
@@ -150,7 +161,7 @@ def find_url(s, ticker, exchange, debug=False):
             except Exception as e:
                 if debug: print(f"[debug] {engine} error: {e}", file=sys.stderr)
                 html = ""
-            url = _parse(html, ticker)
+            url = _parse(html, ticker, exchange)
             if url:
                 cache[key] = url; json.dump(cache, open(CACHE_FILE, "w"))
                 return url
