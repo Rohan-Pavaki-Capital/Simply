@@ -32,6 +32,37 @@ _spec.loader.exec_module(_sws)
 _COLUMNS = ["date", "revenue", "eps", "earnings", "cfo"]
 _HEADERS = ["Period", "Revenue", "EPS", "Earnings", "CFO"]
 
+# Cap the output to the first N periods (rows are oldest-first, so this keeps
+# the latest reported year + the next few forecast years and drops the rest).
+_MAX_ROWS = 4
+
+# Metrics that get projected when SWS publishes fewer than _MAX_ROWS years.
+_PROJECT_COLS = ["revenue", "eps", "earnings", "cfo"]
+
+
+def _project_next(prev, last):
+    """Project one annual period beyond `last` by applying each metric's
+    year-over-year growth from the last published interval (prev -> last).
+    Real SWS values are never modified; this only builds an extra row and
+    tags it estimated=True so callers can tell it apart."""
+    y, m = last["date"].split("-")
+    row = {"date": f"{int(y) + 1}-{m}", "estimated": True}
+    for col in _PROJECT_COLS:
+        if col in last and prev.get(col):          # need both, and prev != 0
+            projected = last[col] * (last[col] / prev[col])   # same YoY growth
+            row[col] = round(projected, 2) if col == "eps" else round(projected)
+    return row
+
+
+def _fill_to_max(rows):
+    """If SWS gave fewer than _MAX_ROWS years, extend forward (compounding the
+    last interval's growth) until there are _MAX_ROWS rows. Needs >=2 rows to
+    derive a growth rate; otherwise returns rows unchanged."""
+    rows = list(rows)
+    while len(rows) < _MAX_ROWS and len(rows) >= 2:
+        rows.append(_project_next(rows[-2], rows[-1]))
+    return rows
+
 router = APIRouter()
 
 
@@ -58,7 +89,7 @@ def _scrape(ticker: str, exchange: str | None):
             status_code=404,
             detail=f"No analyst forecast rows found for {ticker.upper()}.",
         )
-    return url, rows
+    return url, _fill_to_max(rows)[:_MAX_ROWS]
 
 
 @router.get("/api/simply")
