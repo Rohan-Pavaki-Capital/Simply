@@ -16,11 +16,39 @@ Endpoints:
     GET  /api/simply        -> ticker [+ exchange] -> forecast rows (JSON)
     GET  /api/simply/excel  -> same forecast as a downloadable .xlsx
     GET  /api/beta          -> ticker -> company beta from yfinance (JSON)
+    GET  /api/credit-rating -> company name -> credit rating mapped to scale (JSON)
     GET  /api/health        -> health check (for Render/Railway)
 """
 from __future__ import annotations
 
+import importlib.util
 import os
+
+
+def _load_dotenv() -> None:
+    """Load KEY=VALUE pairs from a sibling .env into os.environ.
+
+    Dependency-free (python-dotenv isn't installed) and non-destructive: a
+    value already present in the real environment (e.g. set in the Render /
+    Railway dashboard) is never overwritten. Must run BEFORE the router imports
+    below, since they read os.environ at import time (e.g. FIRECRAWL_API_KEY).
+    """
+    env_path = os.path.join(os.path.dirname(__file__), ".env")
+    if not os.path.exists(env_path):
+        return
+    with open(env_path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in os.environ:
+                os.environ[key] = value
+
+
+_load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,6 +56,24 @@ from fastapi.responses import RedirectResponse
 
 from simply_route import router as simply_router
 from beta.beta_route import router as beta_router
+
+
+def _load_router_from_path(module_name: str, file_path: str):
+    """Load a router module that lives in a non-importable folder.
+
+    The Credit-Ratings folder has a hyphen, so it can't be a Python package;
+    load its credit_route.py directly by file path instead.
+    """
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.router
+
+
+credit_router = _load_router_from_path(
+    "credit_route",
+    os.path.join(os.path.dirname(__file__), "Credit-Ratings", "credit_route.py"),
+)
 
 app = FastAPI(title="Simply Wall St Forecast")
 
@@ -42,6 +88,7 @@ app.add_middleware(
 
 app.include_router(simply_router)
 app.include_router(beta_router)
+app.include_router(credit_router)
 
 
 @app.get("/")
