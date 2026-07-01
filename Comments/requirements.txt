@@ -1,0 +1,6 @@
+# Additional dependencies for the Comments/ feature (analyst comment generator).
+# fastapi/uvicorn are already declared in the project-root requirements.txt.
+# Add these to the main requirements.txt (or `pip install -r Comments/requirements.txt`):
+
+python-dotenv>=1.0.0   # load TOGETHER_API_KEY from .env
+requests>=2.31.0       # POST to the Together AI chat/completions endpoint (already in root reqs)
