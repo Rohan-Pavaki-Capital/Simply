@@ -4,6 +4,16 @@ Running log of significant decisions and session summaries for this project.
 
 ## Decisions
 
+### 2026-07-02 — Simply forecast: add EBITDA / FCF / Analysts + latest-3-rows selection
+- **Scope:** `Simply_wlst/data.py` + `simply_route.py` only. Existing revenue/eps/earnings/cfo math untouched.
+- **EBITDA:** fits the existing FUTURE_SERIES + HIST mechanism exactly — added `merged_future_ebitda`->`ebitda` and `EBITDA`->`ebitda`. No new logic.
+- **FCF:** NO merged_future series. Forecast years from annual `FCF_EST` `_EST` rows; reported/actual year computed `= round(CFO_q4 - abs(CapEx_q4))` from `CASH_OPER`/`CAPEX` q4 lines (abs() handles either CapEx sign; OIS 2025 = 105-31 = 74). New helper `_q4_series` reads a single q4 line into {YYYY-MM: value}.
+- **Analysts (Avg. No.):** from `REVENUE_NUM_EST` `_EST` rows. Forecast years only — attached via `if period in rows` BEFORE the actual row is added, so the reported row stays sparse (no `analysts` key -> blank/None in Excel).
+- **New helper `_est_series(state, est_id, fye_month)`** -> {YYYY-MM: value} for annual `_EST` rows (id match, quarter is None, has end_date, filtered to FYE month — same filter as forecast). Reused for FCF_EST + REVENUE_NUM_EST.
+- **Row selection changed:** was `_fill_to_max(rows)[:4]` (fabricated a 4th projected year). Now `rows[-3:]` = latest 3 FYE rows. Per user instruction "do not fabricate rows", **removed** the projection helpers (`_project_next`, `_fill_to_max`, `_PROJECT_COLS`); `_MAX_ROWS` now 3. AMZN {2025,2026,2027,2028}->{2026,2027,2028}; OIS 3 rows unchanged.
+- **Columns/headers (8):** date/revenue/eps/earnings/**ebitda/fcf**/cfo/**analysts** (ebitda+fcf BEFORE cfo, analysts last). Excel + HTML read `_COLUMNS`/`_HEADERS` so both auto-update; grouped endpoint gained `ebitda_est` + `fcf_est`. Also updated data.py CLI CSV/print + HTML subtitle prose.
+- **Verified LIVE (real Firecrawl path):** OIS exact match to spec (2025: 669/-1.86/-109/63/74/105/blank; 2026: .../3; 2027: .../4). AMZN latest-3 = {2026,2027,2028}, 2025 dropped. Excel + grouped + HTML headers all reflect 8 cols.
+
 ### 2026-06-27 — New feature: company industry -> Damodaran taxonomy (Company_Industry/)
 - **Goal:** `GET /api/industry?ticker=AAPL` -> fetch the company's industry from GuruFocus and standardise it to ONE of Aswath Damodaran's exact 94 industry names (value feeds an Excel data-validation dropdown that rejects anything off-list), or null. Must NEVER 500 and NEVER emit a string outside the 94 names.
 - **Wiring (user choice):** proper package import — `Company_Industry/__init__.py` re-exports `router`; `app.py` does `from Company_Industry import router as industry_router`. Folder uses an underscore (valid identifier) so NO path-loader workaround like Credit-Ratings/ needed.

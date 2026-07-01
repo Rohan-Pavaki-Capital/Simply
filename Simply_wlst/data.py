@@ -67,10 +67,12 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 FUTURE_SERIES = {"merged_future_revenue": "revenue",
                  "merged_future_earnings_per_share": "eps",
                  "merged_future_net_income": "earnings",
+                 "merged_future_ebitda": "ebitda",
                  "merged_future_cash_operations": "cfo"}
 
 # Statement-blob line items (for the most recent reported December year).
-HIST = {"TOTAL_REV": "revenue", "BASIC_EPS": "eps", "NI": "earnings", "CASH_OPER": "cfo"}
+HIST = {"TOTAL_REV": "revenue", "BASIC_EPS": "eps", "NI": "earnings",
+        "EBITDA": "ebitda", "CASH_OPER": "cfo"}
 
 
 def session():
@@ -234,6 +236,44 @@ def _latest_fye_actual(state, fye_month):
     return rows[max(rows)] if rows else None
 
 
+def _est_series(state, est_id, fye_month):
+    """Read an annual '_EST' statement series into {YYYY-MM: value}.
+    These rows are keyed by end_date with quarter==None and span past+future
+    years; keep only the fiscal-year-end month (same filter as the forecast)."""
+    out = {}
+    def walk(n):
+        if isinstance(n, dict):
+            if (n.get("id") == est_id and n.get("quarter") is None
+                    and "value" in n and n.get("end_date") is not None):
+                ed = n["end_date"]; ed = ed / 1000 if ed > 1e12 else ed
+                d = datetime.fromtimestamp(ed, tz=timezone.utc)
+                if d.month == fye_month:
+                    out[d.strftime("%Y-%m")] = n["value"]
+            for v in n.values(): walk(v)
+        elif isinstance(n, list):
+            for v in n: walk(v)
+    walk(state)
+    return out
+
+
+def _q4_series(state, stmt_id, fye_month):
+    """{YYYY-MM: value} for a single quarter==4 statement line id at the FYE month
+    (used to derive reported Free Cash Flow = CFO - CapEx)."""
+    out = {}
+    def walk(n):
+        if isinstance(n, dict):
+            if n.get("quarter") == 4 and n.get("id") == stmt_id and "value" in n:
+                ed = n["end_date"]; ed = ed / 1000 if ed > 1e12 else ed
+                d = datetime.fromtimestamp(ed, tz=timezone.utc)
+                if d.month == fye_month:
+                    out[d.strftime("%Y-%m")] = n["value"]
+            for v in n.values(): walk(v)
+        elif isinstance(n, list):
+            for v in n: walk(v)
+    walk(state)
+    return out
+
+
 def extract_forecast(state, with_last_actual=True):
     """Annual table (any fiscal year-end): forward consensus + latest reported year.
     FYE month is auto-detected per company, so Dec, Jan, Jun, etc. all work."""
@@ -248,9 +288,23 @@ def extract_forecast(state, with_last_actual=True):
                     continue
                 r = rows.setdefault(d.strftime("%Y-%m"), {"date": d.strftime("%Y-%m")})
                 r[col] = round(val, 2) if col == "eps" else round(val)
+    # FCF has no merged_future series -> annual FCF_EST rows for the forecast years.
+    for period, val in _est_series(state, "FCF_EST", fye).items():
+        if period in rows:                 # forecast years only (already present)
+            rows[period]["fcf"] = round(val)
+    # Avg. No. Analysts: forecast years only (the reported year has no count).
+    for period, val in _est_series(state, "REVENUE_NUM_EST", fye).items():
+        if period in rows:
+            rows[period]["analysts"] = round(val)
     if with_last_actual:
         a = _latest_fye_actual(state, fye)
         if a and a["date"] not in rows:
+            # Reported FCF = Cash from Operations - CapEx (CapEx is stored with
+            # either sign; abs() makes it a subtraction regardless).
+            cfo_s = _q4_series(state, "CASH_OPER", fye)
+            capex_s = _q4_series(state, "CAPEX", fye)
+            if a["date"] in cfo_s and a["date"] in capex_s:
+                a["fcf"] = round(cfo_s[a["date"]] - abs(capex_s[a["date"]]))
             rows[a["date"]] = a
     if not rows:
         raise SystemExit("No annual forecast/actual rows found (layout changed?).")
@@ -274,14 +328,17 @@ def main():
 
     json.dump(rows, open(f"{stem}.json", "w"), indent=2)
     with open(f"{stem}.csv", "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["date", "revenue", "eps", "earnings", "cfo"],
-                           extrasaction="ignore")
+        w = csv.DictWriter(
+            f, fieldnames=["date", "revenue", "eps", "earnings", "ebitda", "fcf", "cfo", "analysts"],
+            extrasaction="ignore")
         w.writeheader(); w.writerows(rows)
 
-    print(f"\n{'FY':<9}{'Rev Est':>11}{'EPS Est':>9}{'Earnings':>10}{'CFO':>9}")
+    print(f"\n{'FY':<9}{'Rev Est':>11}{'EPS Est':>9}{'Earnings':>10}"
+          f"{'EBITDA':>9}{'FCF':>8}{'CFO':>8}{'Analysts':>10}")
     for r in rows:
         print(f"{r['date']:<9}{r.get('revenue','-'):>11}{r.get('eps','-'):>9}"
-              f"{r.get('earnings','-'):>10}{r.get('cfo','-'):>9}")
+              f"{r.get('earnings','-'):>10}{r.get('ebitda','-'):>9}{r.get('fcf','-'):>8}"
+              f"{r.get('cfo','-'):>8}{r.get('analysts','-'):>10}")
     print(f"\nwrote {stem}.json and {stem}.csv")
 
 

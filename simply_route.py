@@ -14,6 +14,7 @@ path so this stays isolated from the rest of the backend.
 """
 from __future__ import annotations
 
+import calendar
 import importlib.util
 import io
 from pathlib import Path
@@ -28,40 +29,39 @@ _sws = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_sws)
 
 # Forecast columns produced by data.py.extract_forecast.
-# revenue / earnings / cfo are US$m; eps is per-share; date is YYYY-MM.
-_COLUMNS = ["date", "revenue", "eps", "earnings", "cfo"]
-_HEADERS = ["Period", "Revenue", "EPS", "Earnings", "CFO"]
+# revenue / earnings / ebitda / fcf / cfo are US$m; eps is per-share;
+# analysts is the avg. number of analysts covering the forecast year;
+# date is YYYY-MM.
+_COLUMNS = ["date", "revenue", "eps", "earnings", "ebitda", "fcf", "cfo", "analysts"]
+_HEADERS = ["Period", "Revenue", "EPS", "Earnings", "EBITDA", "FCF", "CFO", "Analysts"]
 
-# Cap the output to the first N periods (rows are oldest-first, so this keeps
-# the latest reported year + the next few forecast years and drops the rest).
-_MAX_ROWS = 4
+# Keep only the latest 3 fiscal-year-end rows (rows are sorted oldest-first).
+_MAX_ROWS = 3
 
-# Metrics that get projected when SWS publishes fewer than _MAX_ROWS years.
-_PROJECT_COLS = ["revenue", "eps", "earnings", "cfo"]
-
-
-def _project_next(prev, last):
-    """Project one annual period beyond `last` by applying each metric's
-    year-over-year growth from the last published interval (prev -> last).
-    Real SWS values are never modified; this only builds an extra row and
-    tags it estimated=True so callers can tell it apart."""
-    y, m = last["date"].split("-")
-    row = {"date": f"{int(y) + 1}-{m}", "estimated": True}
-    for col in _PROJECT_COLS:
-        if col in last and prev.get(col):          # need both, and prev != 0
-            projected = last[col] * (last[col] / prev[col])   # same YoY growth
-            row[col] = round(projected, 2) if col == "eps" else round(projected)
-    return row
+# Standalone summary table exposed by /api/simply/grouped, separate from the
+# per-metric rev_est/eps_est series. Newest-first rows, date as DD/MM/YYYY.
+_TABLE_COLS = ["date", "revenue", "earnings", "fcf", "cfo", "analysts"]
+_TABLE_HEADERS = ["Date", "Revenue", "Earnings", "Free Cash Flow",
+                  "Cash from Op", "Avg. No. Analysts"]
 
 
-def _fill_to_max(rows):
-    """If SWS gave fewer than _MAX_ROWS years, extend forward (compounding the
-    last interval's growth) until there are _MAX_ROWS rows. Needs >=2 rows to
-    derive a growth rate; otherwise returns rows unchanged."""
-    rows = list(rows)
-    while len(rows) < _MAX_ROWS and len(rows) >= 2:
-        rows.append(_project_next(rows[-2], rows[-1]))
-    return rows
+def _fye_date(period: str) -> str:
+    """'YYYY-MM' -> 'DD/MM/YYYY' at the last day of that fiscal-year-end month."""
+    y, m = (int(x) for x in period.split("-"))
+    last_day = calendar.monthrange(y, m)[1]
+    return f"{last_day:02d}/{m:02d}/{y}"
+
+
+def _summary_row(r: dict) -> dict:
+    """One summary-table row; analysts is 'N/A' on the reported year (no key)."""
+    return {
+        "date": _fye_date(r["date"]),
+        "revenue": r.get("revenue"),
+        "earnings": r.get("earnings"),
+        "fcf": r.get("fcf"),
+        "cfo": r.get("cfo"),
+        "analysts": r.get("analysts", "N/A"),
+    }
 
 # Input tickers may carry an exchange prefix (MIC code), e.g. "XPAR:CAP".
 # Map the MIC to the slug Simply Wall St uses in its URLs so the right company
@@ -113,7 +113,7 @@ def _scrape(ticker: str, exchange: str | None):
             status_code=404,
             detail=f"No analyst forecast rows found for {ticker.upper()}.",
         )
-    return url, _fill_to_max(rows)[:_MAX_ROWS]
+    return url, rows[-_MAX_ROWS:]     # latest 3 fiscal-year-end rows
 
 
 @router.get("/api/simply")
@@ -143,6 +143,14 @@ def api_simply_grouped(
         "source": "Simply Wall St",
         "rev_est": _series("revenue"),
         "eps_est": _series("eps"),
+        "ebitda_est": _series("ebitda"),
+        "fcf_est": _series("fcf"),
+        # Standalone combined table (newest-first), separate from the est series.
+        "summary_table": {
+            "columns": _TABLE_COLS,
+            "headers": _TABLE_HEADERS,
+            "rows": [_summary_row(r) for r in reversed(rows)],
+        },
     }
 
 
@@ -216,7 +224,7 @@ _PAGE = """<!doctype html>
 <body>
 <div class="wrap">
   <h1>Pavaki Forward Analyst Forecast</h1>
-  <p class="sub">Enter a ticker symbol to retrieve forward-looking analyst consensus estimates &mdash; revenue, EPS, earnings, and operating cash flow.</p>
+  <p class="sub">Enter a ticker symbol to retrieve forward-looking analyst consensus estimates &mdash; revenue, EPS, earnings, EBITDA, free cash flow, operating cash flow, and analyst coverage.</p>
 
   <form id="f">
     <div class="field grow">
